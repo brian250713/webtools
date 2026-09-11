@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>科學計算機｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>科學計算機</h1><input id="e" type="text" placeholder="例如 sin(0.5)+log10(100)+2^8"><div class="toolbar"><button id="go">計算</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{try{const s=$('e').value.replace(/\^/g,'**').replace(/sin|cos|tan|log10|log|sqrt|abs|PI|E/g,m=>({sin:'Math.sin',cos:'Math.cos',tan:'Math.tan',log10:'Math.log10',log:'Math.log',sqrt:'Math.sqrt',abs:'Math.abs',PI:'Math.PI',E:'Math.E'}[m]));if(/[^0-9+\-*/(). Math,]/.test(s))throw 0;$('out').textContent='= '+Function('"use strict";return('+s+')')();}catch(e){$('out').textContent='運算式錯誤';}};
+</script></div></body></html>

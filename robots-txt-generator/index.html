@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>robots.txt 產生器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>robots.txt 產生器</h1><input id="s" type="text" placeholder="Sitemap URL"><div class="toolbar"><button id="a">寬鬆（允許全部）</button><button id="b" class="ghost">嚴格（擋 /admin）</button><button id="cp" class="ghost">複製</button></div><pre id="out">User-agent: *</pre><script>
+const $=id=>document.getElementById(id);
+const mk=r=>`User-agent: *\n${r}\nSitemap: ${$('s').value||'https://example.com/sitemap.xml'}`;
+$('a').onclick=()=>$('out').textContent=mk('Allow: /');$('b').onclick=()=>$('out').textContent=mk('Disallow: /admin\nDisallow: /private');$('cp').onclick=()=>navigator.clipboard.writeText($('out').textContent);
+</script></div></body></html>

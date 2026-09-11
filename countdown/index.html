@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>倒數計時器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>倒數計時器</h1><input id="d" type="datetime-local"><div class="toolbar"><button id="go">開始</button></div><pre id="o"></pre><script>
+const $=id=>document.getElementById(id);let t=null;
+$('go').onclick=()=>{clearInterval(t);t=setInterval(()=>{const ms=new Date($('d').value)-Date.now();if(isNaN(ms)||ms<0){$('o').textContent='已到或日期無效';clearInterval(t);return;}const s=Math.floor(ms/1000);$('o').textContent=`${Math.floor(s/86400)}天 ${Math.floor(s%86400/3600)}時 ${Math.floor(s%3600/60)}分 ${s%60}秒`;},500);};
+</script></div></body></html>

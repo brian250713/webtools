@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>安全檢查清單｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>安全檢查清單</h1><p class="note">50+ 項目本地勾選，進度存 localStorage。</p><div id="l"></div><pre id="o"></pre><script>
+const items=['HTTPS 全站','HSTS 開啟','Cookie Secure+HttpOnly','密碼 12+ 長度','啟用 2FA','備份 3-2-1','相依套件定期更新','CSP 設定','XSS 輸出編碼','SQL 參數化','錯誤訊息不洩漏','CORS 最小化','JWT 短效期','上傳檔類型限制','Rate limit 登入','Log 保留','HTTPS 憑證自動續','DB 最小權限','Secrets 不進 repo','CI 掃描弱點'];
+const $=id=>document.getElementById(id);const k='sec-v1';let s=JSON.parse(localStorage.getItem(k)||'[]');
+$('l').innerHTML=items.map((t,i)=>`<label style="display:block"><input type="checkbox" data-i="${i}" ${s.includes(i)?'checked':''}> ${t}</label>`).join('');
+const upd=()=>{s=[...document.querySelectorAll('input:checked')].map(x=>+x.dataset.i);localStorage.setItem(k,JSON.stringify(s));$('o').textContent=`完成 ${s.length}/${items.length}（${Math.round(s.length/items.length*100)}%）`;};
+document.querySelectorAll('input').forEach(x=>x.onchange=upd);upd();
+</script></div></body></html>

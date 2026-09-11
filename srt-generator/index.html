@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SRT 字幕產生器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>SRT 字幕產生器</h1><textarea id="in" placeholder="每行一句字幕"></textarea><div class="toolbar"><button id="go">生成 SRT</button><button id="dl" class="ghost">下載</button></div><pre id="o"></pre><script>
+const $=id=>document.getElementById(id);const f=s=>`00:00:${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')},000`;
+$('go').onclick=()=>{const ls=$('in').value.split('\n').filter(Boolean);$('o').textContent=ls.map((l,i)=>`${i+1}\n${f(i*3)} --> ${f(i*3+2)}\n${l}`).join('\n\n');};
+$('dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('o').textContent],{type:'text/plain'}));a.download='sub.srt';a.click();};
+</script></div></body></html>

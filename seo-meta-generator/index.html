@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEO Meta 產生器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>SEO Meta 產生器</h1><input id="t" type="text" placeholder="title"><input id="d" type="text" placeholder="description"><input id="u" type="text" placeholder="canonical URL"><div class="toolbar"><button id="go">生成</button><button id="cp" class="ghost">複製</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{$('out').textContent=`<title>${$('t').value}</title>\n<meta name="description" content="${$('d').value}">\n<link rel="canonical" href="${$('u').value}">\n<meta property="og:title" content="${$('t').value}">\n<meta property="og:description" content="${$('d').value}">\n<meta name="twitter:card" content="summary">`;};
+$('cp').onclick=()=>navigator.clipboard.writeText($('out').textContent);
+</script></div></body></html>

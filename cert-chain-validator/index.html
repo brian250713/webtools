@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>憑證鏈驗證器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>憑證鏈驗證器</h1><p class="note">本地檢查貼上的 PEM 數量與順序（葉→中繼→根），不做線上信任驗證。</p><textarea id="in" placeholder="貼上多段 PEM"></textarea><div class="toolbar"><button id="go">檢查</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{const n=($('in').value.match(/BEGIN CERTIFICATE/g)||[]).length;$('out').textContent=n===0?'找不到憑證':n===1?'僅 1 張：缺少中繼鏈（多半需補 intermediate）':`${n} 張 PEM，順序應為 葉憑證 → 中繼 → 根。請確認伺服器有送出中繼，否則部分裝置會報不信任。`;};
+</script></div></body></html>

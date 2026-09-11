@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Context Vault｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>Context Vault 檢視器</h1><p class="note">本機離線看 JSONL 對話紀錄，不上傳。</p><input type="file" id="f" accept=".jsonl,.json"><input id="q" type="text" placeholder="關鍵字搜尋"><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);let lines=[];
+$('f').onchange=()=>{const r=new FileReader();r.onload=()=>{lines=r.result.split('\n').filter(Boolean);show();};r.readAsText($('f').files[0]);};
+$('q').oninput=show;function show(){const k=$('q').value.toLowerCase();const f=lines.filter(l=>!k||l.toLowerCase().includes(k));$('out').textContent=`${f.length}/${lines.length} 行\n`+f.slice(0,30).join('\n');}
+</script></div></body></html>
