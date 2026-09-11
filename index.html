@@ -1,6 +1,8 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>線上工具目錄｜免註冊・本地運算</title><meta name="description" content="15 個免註冊線上工具：JSON、Base64、密碼、QR、色彩、字數、URL、時間戳、哈希、JWT 等，全部瀏覽器本地運算。"><link rel="stylesheet" href="assets/style.css"></head><body><div class="wrap">
-<header class="top"><div><h1>線上工具目錄</h1><p class="note">43 工具・免註冊・全本地運算・響應式</p></div><a href="#tools">瀏覽工具 ↓</a></header>
-<div class="toolbar"><input id="q" type="text" placeholder="搜尋工具，例如 json、密碼、qr…"></div>
+<header class="top"><div><h1>🧰 玩具工具箱</h1><p class="note">43 工具・免註冊・全本地運算・黏土風</p></div><a href="#tools">瀏覽工具 ↓</a></header>
+<section class="hero"><h1>像玩黏土一樣 <span>動手學工具</span></h1><p>課程式編排・每個工具都是一堂 2 分鐘小課：打開即玩，用完即走，進度自動存本地。</p><div class="stats"><span class="stat">🎓 43 堂小課</span><span class="stat">⚡ 零註冊</span><span class="stat">🔒 本地運算</span></div><div class="toolbar"><a href="#tools" style="background:var(--brand);color:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 20px;box-shadow:4px 4px 0 var(--ink)">開始第一課 →</a></div></section>
+<section class="progress"><b>📈 我的學習進度 <span id="pc">0/43</span></b><div class="bar"><i id="bar"></i></div><p class="note">點開任一工具即 +1（localStorage，不上傳）。<button id="reset" class="ghost" style="padding:4px 10px">重設</button></p></section>
+<div class="toolbar"><input id="q" type="text" placeholder="搜尋課程，例如 json、密碼、qr…"></div>
 <div class="toolbar filters" id="cats">
 <button data-c="all" class="on">全部</button><button data-c="dev">開發者工具</button><button data-c="text">文字處理</button><button data-c="design">設計工具</button><button data-c="util">實用工具</button>
 </div>
@@ -50,9 +52,16 @@
 <div class="card" data-c="util" data-k="音頻 裁剪 音樂"><h3>🎵 音頻裁剪器</h3><p>WebAudio 本地裁 WAV。</p><div><span class="tag">音頻</span><span class="tag">裁剪</span></div><a href="audio-trimmer/">立即使用 →</a></div>
 </div>
 <p class="note">隱私：所有運算在你的瀏覽器完成，不上傳伺服器。・<a href="https://ai-chain.tw/tools/">對標原站</a>功能、文案重寫。</p>
+<section><h2>💬 學員見證</h2><div class="testis"><div class="card"><p>“JSON 格式化像捏黏土，錯哪裡一眼看到。”</p><b>— 前端新手 Mia</b></div><div class="card"><p>“密碼課 + 強度檢測，兩分鐘搞懂熵。”</p><b>— 社團老師 Ken</b></div><div class="card"><p>“圖片三堂課全本地，學生作品不用上傳。”</p><b>— 設計講師 Yuki</b></div></div></section>
+<section class="cta-band"><h2 style="margin:0 0 8px">準備好開學了嗎？🎒</h2><p>免註冊、免學費，點開第一個工具就是開學。</p><a href="#tools">立即入學 →</a></section>
 <script>
-const q=document.getElementById('q'),cards=[...document.querySelectorAll('.card')];let cat='all';
+const q=document.getElementById('q'),cards=[...document.querySelectorAll('.card#tools .card, #tools .card')];let cat='all';
+const all=[...document.querySelectorAll('#tools .card')];
 document.getElementById('cats').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;cat=e.target.dataset.c;document.querySelectorAll('#cats button').forEach(b=>b.classList.toggle('on',b===e.target));filter();});
 q.addEventListener('input',filter);
-function filter(){const k=q.value.trim().toLowerCase();cards.forEach(c=>{const okC=cat==='all'||c.dataset.c===cat;const okK=!k||c.dataset.k.includes(k)||c.textContent.toLowerCase().includes(k);c.style.display=okC&&okK?'':'none';});}
+function filter(){const k=q.value.trim().toLowerCase();all.forEach(c=>{const okC=cat==='all'||c.dataset.c===cat;const okK=!k||c.dataset.k.includes(k)||c.textContent.toLowerCase().includes(k);c.style.display=okC&&okK?'':'none';});}
+const K='clay-progress-v1';let done=new Set(JSON.parse(localStorage.getItem(K)||'[]'));
+function paint(){document.getElementById('pc').textContent=done.size+'/43';document.getElementById('bar').style.width=(done.size/43*100)+'%';}
+document.querySelectorAll('#tools .card a').forEach(a=>a.addEventListener('click',()=>{done.add(a.getAttribute('href'));localStorage.setItem(K,JSON.stringify([...done].slice(-43)));paint();}));
+document.getElementById('reset').onclick=()=>{done=new Set();localStorage.removeItem(K);paint();};paint();
 </script></div></body></html>
