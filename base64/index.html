@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Base64 編解碼｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>Base64 編解碼</h1><p class="note">Unicode 安全，本地運算。</p><textarea id="in" placeholder="輸入文字或 Base64"></textarea><div class="toolbar"><button id="e">編碼</button><button id="d" class="ghost">解碼</button><button id="c" class="ghost">複製結果</button></div><pre id="out"></pre><div class="toolbar"><input type="file" id="f"><button id="fb" class="ghost">檔案→Base64</button></div><script>
+const $=id=>document.getElementById(id);
+const enc=s=>btoa(String.fromCharCode(...new TextEncoder().encode(s)));const dec=s=>new TextDecoder().decode(Uint8Array.from(atob(s.trim()),c=>c.charCodeAt(0)));
+$('e').onclick=()=>{try{$('out').textContent=enc($('in').value);}catch(e){$('out').textContent='編碼失敗：'+e.message;}};
+$('d').onclick=()=>{try{$('out').textContent=dec($('in').value);}catch(e){$('out').textContent='解碼失敗：非有效 Base64';}};
+$('c').onclick=()=>navigator.clipboard.writeText($('out').textContent);
+$('fb').onclick=()=>{const f=$('f').files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('out').textContent=r.result.split(',')[1]||r.result;$('in').value=$('out').textContent.slice(0,200)+'…(檔案已轉換)';};r.readAsDataURL(f);};
+</script></div></body></html>

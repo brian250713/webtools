@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>字數統計｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>字數統計</h1><textarea id="in" placeholder="貼上或輸入文字…"></textarea><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('in').addEventListener('input',()=>{const v=$('in').value;const words=(v.trim().match(/\S+/g)||[]).length;const lines=v?v.split('\n').length:0;$('out').textContent=`字元（含空白） ${[...v].length}\n字元（不含空白） ${[...v.replace(/\s/g,'')].length}\n詞數 / 單詞 ${words}\n行數 ${lines}\n閱讀時間約 ${Math.max(1,Math.round(words/200))} 分鐘`;});
+</script></div></body></html>

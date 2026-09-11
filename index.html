@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>線上工具目錄｜免註冊・本地運算</title><meta name="description" content="8 個免註冊線上工具：JSON、Base64、密碼、QR、色彩、字數、URL、時間戳，全部瀏覽器本地運算。"><link rel="stylesheet" href="assets/style.css"></head><body><div class="wrap">
+<header class="top"><div><h1>線上工具目錄</h1><p class="note">MVP 8 工具・免註冊・全本地運算・響應式</p></div><a href="#tools">瀏覽工具 ↓</a></header>
+<div class="toolbar"><input id="q" type="text" placeholder="搜尋工具，例如 json、密碼、qr…"></div>
+<div class="toolbar filters" id="cats">
+<button data-c="all" class="on">全部</button><button data-c="dev">開發者工具</button><button data-c="text">文字處理</button><button data-c="design">設計工具</button><button data-c="util">實用工具</button>
+</div>
+<div class="grid" id="tools">
+<div class="card" data-c="dev" data-k="json 格式化 驗證 美化"><h3>📋 JSON 格式化</h3><p>美化、壓縮、驗證 JSON，錯誤定位。</p><div><span class="tag">JSON</span><span class="tag">驗證</span></div><a href="json/">立即使用 →</a></div>
+<div class="card" data-c="dev" data-k="base64 編碼 解碼"><h3>🔐 Base64 編解碼</h3><p>Unicode 安全的編碼解碼，支援檔案。</p><div><span class="tag">Base64</span><span class="tag">編碼</span></div><a href="base64/">立即使用 →</a></div>
+<div class="card" data-c="util" data-k="密碼 生成器 隨機 安全"><h3>🔑 密碼生成器</h3><p>自訂長度與字元的高強度密碼。</p><div><span class="tag">密碼</span><span class="tag">安全</span></div><a href="password-generator/">立即使用 →</a></div>
+<div class="card" data-c="util" data-k="qr qrcode 二維碼 生成"><h3>📱 QR Code 生成器</h3><p>文字、網址轉 QR，可下載 PNG。</p><div><span class="tag">QR</span><span class="tag">生成</span></div><a href="qr-generator/">立即使用 →</a></div>
+<div class="card" data-c="design" data-k="色彩 顏色 調色盤 hex rgb"><h3>🎨 色彩工具</h3><p>選色、HEX/RGB/HSL 互轉、調色盤。</p><div><span class="tag">色彩</span><span class="tag">設計</span></div><a href="color-tools/">立即使用 →</a></div>
+<div class="card" data-c="text" data-k="字數 統計 文字 詞數"><h3>📝 字數統計</h3><p>字元、詞數、行數、閱讀時間。</p><div><span class="tag">字數</span><span class="tag">文字</span></div><a href="word-counter/">立即使用 →</a></div>
+<div class="card" data-c="dev" data-k="url 編碼 解碼 網址"><h3>🌐 URL 編解碼</h3><p>中文與特殊符號的安全編解碼。</p><div><span class="tag">URL</span><span class="tag">編碼</span></div><a href="url-encoder/">立即使用 →</a></div>
+<div class="card" data-c="dev" data-k="timestamp 時間戳 unix 日期 轉換"><h3>⏰ 時間戳轉換</h3><p>Unix 秒/毫秒與日期互轉，本地時區。</p><div><span class="tag">時間戳</span><span class="tag">轉換</span></div><a href="timestamp/">立即使用 →</a></div>
+</div>
+<p class="note">隱私：所有運算在你的瀏覽器完成，不上傳伺服器。・<a href="https://ai-chain.tw/tools/">對標原站</a>功能、文案重寫。</p>
+<script>
+const q=document.getElementById('q'),cards=[...document.querySelectorAll('.card')];let cat='all';
+document.getElementById('cats').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;cat=e.target.dataset.c;document.querySelectorAll('#cats button').forEach(b=>b.classList.toggle('on',b===e.target));filter();});
+q.addEventListener('input',filter);
+function filter(){const k=q.value.trim().toLowerCase();cards.forEach(c=>{const okC=cat==='all'||c.dataset.c===cat;const okK=!k||c.dataset.k.includes(k)||c.textContent.toLowerCase().includes(k);c.style.display=okC&&okK?'':'none';});}
+</script></div></body></html>

@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>時間戳轉換｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>時間戳轉換</h1><p class="note">本地時區：<span id="tz"></span>・現在：<span id="now"></span></p><input id="ts" type="text" placeholder="Unix 秒或毫秒，例如 1710000000"><div class="toolbar"><button id="a">時間戳→日期</button><button id="b" class="ghost">日期→時間戳</button><button id="c" class="ghost">填入現在</button></div><input id="dt" type="datetime-local"><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);$('tz').textContent=Intl.DateTimeFormat().resolvedOptions().timeZone;
+function tick(){$('now').textContent=Math.floor(Date.now()/1000)+' / '+new Date().toLocaleString();}tick();setInterval(tick,1000);
+$('c').onclick=()=>{$('ts').value=Math.floor(Date.now()/1000);};
+$('a').onclick=()=>{let v=+$('ts').value.trim();if(!v){$('out').textContent='請輸入時間戳';return;}if(String(Math.abs(v)).length<=10)v*=1000;const d=new Date(v);$('out').textContent=isNaN(d)?'無效時間戳':d.toString()+'\nISO '+d.toISOString()+'\n本地 '+d.toLocaleString();};
+$('b').onclick=()=>{const d=new Date($('dt').value);if(isNaN(d)){$('out').textContent='請選擇日期';return;}$('out').textContent='秒 '+Math.floor(d.getTime()/1000)+'\n毫秒 '+d.getTime();};
+</script></div></body></html>

@@ -1,0 +1,6 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>URL 編解碼｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>URL 編解碼</h1><textarea id="in" placeholder="輸入網址或文字，支援中文"></textarea><div class="toolbar"><button id="e">編碼 (encodeURIComponent)</button><button id="d" class="ghost">解碼</button><button id="c" class="ghost">複製</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('e').onclick=()=>{try{$('out').textContent=encodeURIComponent($('in').value);}catch(e){$('out').textContent='編碼失敗';}};
+$('d').onclick=()=>{try{$('out').textContent=decodeURIComponent($('in').value);}catch(e){try{$('out').textContent=decodeURI($('in').value);}catch(_){$('out').textContent='解碼失敗：格式錯誤';}}};
+$('c').onclick=()=>navigator.clipboard.writeText($('out').textContent);
+</script></div></body></html>

@@ -1,0 +1,6 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QR Code 生成器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>QR Code 生成器</h1><input id="t" type="text" value="https://example.com" placeholder="文字或網址"><div class="toolbar"><select id="s"><option value="180">180px</option><option value="256" selected>256px</option><option value="360">360px</option></select><button id="g">生成</button><button id="d" class="ghost">下載 PNG</button></div><div id="q"></div><p class="note">使用 qrcodejs CDN 在本地繪製，內容不上傳。</p><script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script><script>
+const $=id=>document.getElementById(id);let qr=null;
+$('g').onclick=()=>{$('q').innerHTML='';qr=new QRCode($('q'),{text:$('t').value||'',width:+$('s').value,height:+$('s').value});};
+$('d').onclick=()=>{const img=$('q').querySelector('img,canvas');if(!img)return;const a=document.createElement('a');a.download='qr.png';a.href=img.tagName==='IMG'?img.src:img.toDataURL();a.click();};
+$('g').click();
+</script></div></body></html>
