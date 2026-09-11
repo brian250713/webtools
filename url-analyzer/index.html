@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>URL 分析器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>URL 分析器</h1><input id="in" type="text" placeholder="https://example.com:8080/p?q=1#h"><div class="toolbar"><button id="go">解析</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{try{const u=new URL($('in').value);$('out').textContent=`協議 ${u.protocol}\n主機 ${u.host}\n路徑 ${u.pathname}\n查詢 ${u.search||'(無)'}\n雜湊 ${u.hash||'(無)'}\n參數\n`+[...u.searchParams.entries()].map(([k,v])=>`  ${k} = ${v}`).join('\n');}catch(e){$('out').textContent='無效網址';}};
+</script></div></body></html>

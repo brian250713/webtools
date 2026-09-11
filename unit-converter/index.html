@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>單位轉換｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>單位轉換</h1><div class="row"><input id="v" type="number" value="1"><select id="k"><option value="len">長度 m</option><option value="mass">重量 kg</option><option value="temp">溫度 °C</option></select><button id="go">轉換</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{const v=+$('v').value,k=$('k').value;if(k==='len')$('out').textContent=`${v} m\n= ${(v*100).toFixed(3)} cm\n= ${(v*3.28084).toFixed(4)} ft\n= ${(v*39.3701).toFixed(3)} in\n= ${(v/1000).toFixed(6)} km`;else if(k==='mass')$('out').textContent=`${v} kg\n= ${(v*1000).toFixed(1)} g\n= ${(v*2.20462).toFixed(4)} lb\n= ${(v*35.274).toFixed(3)} oz`;else $('out').textContent=`${v} °C\n= ${(v*9/5+32).toFixed(2)} °F\n= ${(v+273.15).toFixed(2)} K`;};
+$('go').click();
+</script></div></body></html>

@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>代碼美化器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>代碼美化器</h1><p class="note">支援 JSON / JS（簡易縮排）。HTML/CSS 請用 JSON 頁。</p><textarea id="in" placeholder='貼上 JS 或 JSON'></textarea><div class="toolbar"><button id="js">JS 美化</button><button id="j" class="ghost">JSON 美化</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('j').onclick=()=>{try{$('out').textContent=JSON.stringify(JSON.parse($('in').value),null,2);}catch(e){$('out').textContent='JSON 錯誤：'+e.message;}};
+$('js').onclick=()=>{let d=0;$('out').textContent=$('in').value.replace(/([{};])/g,'\n$1\n').split('\n').map(l=>{l=l.trim();if(!l)return'';if(/^[}\]]/.test(l))d=Math.max(0,d-1);const r='  '.repeat(d);if(/[{[]$/.test(l)||/[{(]$/.test(l))d++;return r+l;}).filter(Boolean).join('\n');};
+</script></div></body></html>

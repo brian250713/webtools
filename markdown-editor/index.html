@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Markdown 編輯器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>Markdown 編輯器</h1><div class="row"><textarea id="in" placeholder="# 標題&#10;- 項目"></textarea><div id="pv" class="card" style="flex:1;min-height:140px"></div></div><p class="note">極簡本地預覽（標題/粗體/代碼/列表），不上傳。</p><script>
+const $=id=>document.getElementById(id);
+$('in').addEventListener('input',()=>{let h=$('in').value.replace(/&/g,'&amp;').replace(/</g,'&lt;');h=h.replace(/^### (.*)$/gm,'<h3>$1</h3>').replace(/^## (.*)$/gm,'<h2>$1</h2>').replace(/^# (.*)$/gm,'<h1>$1</h1>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>').replace(/^- (.*)$/gm,'<li>$1</li>').replace(/\n/g,'<br>');$('pv').innerHTML=h;});
+</script></div></body></html>

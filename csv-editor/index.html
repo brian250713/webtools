@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSV 處理器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>CSV 處理器</h1><input type="file" id="f" accept=".csv"><input id="q" type="text" placeholder="篩選關鍵字"><div class="toolbar"><button id="go">載入預覽</button><button id="dl" class="ghost">匯出篩選後 CSV</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);let rows=[];
+function parse(t){return t.trim().split(/\r?\n/).map(l=>l.split(','));}
+$('go').onclick=()=>{const f=$('f').files[0];if(!f){$('out').textContent='請選檔';return;}const r=new FileReader();r.onload=()=>{rows=parse(r.result);show();};r.readAsText(f);};
+function show(){const k=$('q').value.toLowerCase();const f=rows.filter(r=>!k||r.join(',').toLowerCase().includes(k));$('out').textContent=`共 ${rows.length} 列，篩後 ${f.length} 列\n`+f.slice(0,20).join('\n')+(f.length>20?'\n…僅顯示前20列':'');}
+$('q').addEventListener('input',()=>rows.length&&show());
+$('dl').onclick=()=>{const k=$('q').value.toLowerCase();const f=rows.filter(r=>!k||r.join(',').toLowerCase().includes(k));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([f.map(r=>r.join(',')).join('\n')],{type:'text/csv'}));a.download='filtered.csv';a.click();};
+</script></div></body></html>
