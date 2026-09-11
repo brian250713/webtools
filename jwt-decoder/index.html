@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JWT 解析器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>JWT 解析器</h1><p class="note">僅本地解碼 Header/Payload，不驗簽名不上傳。</p><textarea id="in" placeholder="貼上 xxx.yyy.zzz"></textarea><div class="toolbar"><button id="a">解析</button><button id="b" class="ghost">清空</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('a').onclick=()=>{try{const[a,b]= $('in').value.trim().split('.');const j=o=>JSON.stringify(JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(o.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0)))),null,2);$('out').textContent='HEADER\n'+j(a)+'\n\nPAYLOAD\n'+j(b);}catch(e){$('out').textContent='解析失敗：非有效 JWT';}};
+$('b').onclick=()=>{$('in').value='';$('out').textContent='';};
+</script></div></body></html>

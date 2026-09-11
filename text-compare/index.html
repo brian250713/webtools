@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>文本比較｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>文本比較</h1><div class="row"><textarea id="a" placeholder="文本 A"></textarea><textarea id="b" placeholder="文本 B"></textarea></div><div class="toolbar"><button id="go">逐行比較</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{const A=$('a').value.split('\n'),B=$('b').value.split('\n'),n=Math.max(A.length,B.length);let r=[];for(let i=0;i<n;i++){if(A[i]===B[i])r.push(`  ${i+1} ${A[i]??''}`);else{if(A[i]!==undefined)r.push(`- ${i+1} ${A[i]}`);if(B[i]!==undefined)r.push(`+ ${i+1} ${B[i]}`);}}$('out').textContent=r.join('\n')||'(皆空)';};
+</script></div></body></html>

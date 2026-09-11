@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>進制轉換｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>進制轉換</h1><input id="in" type="text" placeholder="例如 ff、1010、255"><select id="from"><option value="16">十六進制</option><option value="10" selected>十進制</option><option value="8">八進制</option><option value="2">二進制</option></select><div class="toolbar"><button id="go">轉換</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+$('go').onclick=()=>{const v=$('in').value.trim().replace(/^0x/i,'');const n=parseInt(v,+$('from').value);if(isNaN(n)){$('out').textContent='無效數字';return;}$('out').textContent=`BIN ${n.toString(2)}\nOCT ${n.toString(8)}\nDEC ${n.toString(10)}\nHEX ${n.toString(16).toUpperCase()}`;};
+</script></div></body></html>

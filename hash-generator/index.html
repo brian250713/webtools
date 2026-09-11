@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>哈希生成器｜線上工具</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap"><a href="../">← 目錄</a><h1>哈希生成器</h1><p class="note">SHA-256/512 本地運算（SubtleCrypto），MD5 需後端故不收。</p><textarea id="in" placeholder="輸入文字"></textarea><div class="toolbar"><button id="a">SHA-256</button><button id="b" class="ghost">SHA-512</button><button id="c" class="ghost">SHA-1</button></div><pre id="out"></pre><script>
+const $=id=>document.getElementById(id);
+async function h(algo){const b=await crypto.subtle.digest(algo,new TextEncoder().encode($('in').value));$('out').textContent=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+$('a').onclick=()=>h('SHA-256');$('b').onclick=()=>h('SHA-512');$('c').onclick=()=>h('SHA-1');
+</script></div></body></html>
